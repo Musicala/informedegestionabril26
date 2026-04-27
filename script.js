@@ -422,7 +422,10 @@ function renderFirmas(d) {
           <td><label><input type="radio" name="aprobacion_fsa" value="si"> Sí</label></td>
         </tr>
         <tr>
-          <td><label><input type="radio" name="aprobacion_fsa" value="si_recomendaciones"> Sí con recomendaciones</label></td>
+          <td>
+            <label><input type="radio" name="aprobacion_fsa" value="si_recomendaciones"> Sí con recomendaciones</label>
+            <textarea id="recomendaciones-fsa" class="recomendaciones-fsa-input" placeholder="Escribe aquí las recomendaciones..."></textarea>
+          </td>
         </tr>
         <tr>
           <td><label><input type="radio" name="aprobacion_fsa" value="no"> No</label></td>
@@ -434,9 +437,9 @@ function renderFirmas(d) {
           <div class="firma-titulo-fsa">Firma</div>
           <div class="firma-espacio-fsa"></div>
           <div class="firma-footer-fsa">
-            <div class="fila-fsa"><span class="lbl-fsa">NOMBRE DEL COORDINADOR O LÍDER DEL PROYECTO:</span> ${izquierda.nombre || '________________________'}</div>
+            <div class="fila-fsa"><span class="lbl-fsa">NOMBRE DEL COORDINADOR O LÍDER DEL PROYECTO:</span> <input type="text" class="fsa-inline-input" value="${izquierda.nombre || ''}" placeholder="Nombres y apellidos"></div>
             <div class="fila-fsa"><span class="lbl-fsa">PROYECTO:</span> ${d.proyecto || '________________________'}</div>
-            <div class="fila-fsa"><span class="lbl-fsa">FECHA:</span> ${izquierda.fecha || '________________________'}</div>
+            <div class="fila-fsa"><span class="lbl-fsa">FECHA:</span> <input type="text" class="fsa-inline-input fsa-inline-date" value="${izquierda.fecha || ''}" placeholder="dd/mm/aaaa"></div>
           </div>
         </div>
 
@@ -444,13 +447,24 @@ function renderFirmas(d) {
           <div class="firma-titulo-fsa">Firma</div>
           <div class="firma-espacio-fsa"></div>
           <div class="firma-footer-fsa">
-            <div class="fila-fsa"><span class="lbl-fsa">NOMBRE DEL COORDINADOR GENERAL DE PROGRAMAS Y PROYECTOS:</span> ${derecha.nombre || '________________________'}</div>
-            <div class="fila-fsa"><span class="lbl-fsa">FECHA:</span> ${derecha.fecha || '________________________'}</div>
+            <div class="fila-fsa"><span class="lbl-fsa">NOMBRE DEL COORDINADOR GENERAL DE PROGRAMAS Y PROYECTOS:</span> <input type="text" class="fsa-inline-input" value="${derecha.nombre || ''}" placeholder="Nombres y apellidos"></div>
+            <div class="fila-fsa"><span class="lbl-fsa">FECHA:</span> <input type="text" class="fsa-inline-input fsa-inline-date" value="${derecha.fecha || ''}" placeholder="dd/mm/aaaa"></div>
           </div>
         </div>
       </div>
     </div>
   `;
+
+  const radios = grid.querySelectorAll('input[name="aprobacion_fsa"]');
+  const recomendaciones = grid.querySelector('#recomendaciones-fsa');
+  if (recomendaciones) {
+    recomendaciones.style.display = 'none';
+    radios.forEach((radio) => {
+      radio.addEventListener('change', () => {
+        recomendaciones.style.display = radio.value === 'si_recomendaciones' && radio.checked ? 'block' : 'none';
+      });
+    });
+  }
 }
 
 // ──────────────────────────────────────────────────────────────

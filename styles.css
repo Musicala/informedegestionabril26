@@ -688,6 +688,19 @@ main { padding: 2rem 0 4rem; }
   gap: .45rem;
 }
 
+.recomendaciones-fsa-input {
+  display: none;
+  width: 100%;
+  margin-top: .6rem;
+  min-height: 80px;
+  border: 1px solid #bfb7cf;
+  border-radius: 8px;
+  padding: .55rem .65rem;
+  font: inherit;
+  color: var(--texto);
+  background: #fff;
+}
+
 .firmas-plantilla-fsa {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -717,6 +730,25 @@ main { padding: 2rem 0 4rem; }
 
 .lbl-fsa { font-weight: 700; }
 .fila-fsa + .fila-fsa { margin-top: .3rem; }
+
+.fsa-inline-input {
+  width: min(100%, 360px);
+  border: none;
+  border-bottom: 1px solid #333;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  padding: 0 .2rem;
+}
+
+.fsa-inline-date {
+  width: min(100%, 220px);
+}
+
+.fsa-inline-input:focus,
+.recomendaciones-fsa-input:focus {
+  outline: none;
+}
 
 @media (max-width: 900px) {
   .firmas-plantilla-fsa {
